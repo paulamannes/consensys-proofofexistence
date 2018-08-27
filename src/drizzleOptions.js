@@ -1,4 +1,3 @@
-import SimpleStorage from './../build/contracts/SimpleStorage.json'
 import IpfsStorage from './../build/contracts/IpfsStorage.json'
 
 const drizzleOptions = {
@@ -10,11 +9,9 @@ const drizzleOptions = {
     }
   },
   contracts: [
-    SimpleStorage,
     IpfsStorage
   ],
   events: {
-    SimpleStorage: ['StorageSet']
   },
   polls: {
     accounts: 1500

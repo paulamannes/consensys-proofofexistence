@@ -1,36 +1,74 @@
-import React, { Component, Children } from 'react'
+import { drizzleConnect } from 'drizzle-react'
+import React, { Children, Component } from 'react'
+import PropTypes from 'prop-types'
 
-class Loading extends Component {
-  constructor(props, context) {
-    super(props)
-  }
+/*
+ * Create component.
+ */
 
+class LoadingContainer extends Component {
   render() {
-      console.log(this.props);
     if (this.props.web3.status === 'failed')
     {
-        <section className="__pofland__default_wrapper">
-            <div className="container first_child">
-                <h1 className="text-center">⚠️</h1>
-                <p>This browser has no connection to the Ethereum network. Please use the Chrome/FireFox extension MetaMask, or dedicated Ethereum browsers Mist or Parity.</p>
+      if (this.props.errorComp) {
+        return this.props.errorComp
+      }
+
+      return(
+        <main className="container loading-screen">
+          <div className="pure-g">
+            <div className="pure-u-1-1">
+              <h1>⚠️</h1>
+              <p>This browser has no connection to the Ethereum network. Please use the Chrome/FireFox extension MetaMask, or dedicated Ethereum browsers Mist or Parity.</p>
             </div>
-        </section>
+          </div>
+        </main>
+      )
     }
 
+    if (this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0)
+    {
+      return(
+        <main className="container loading-screen">
+          <div className="pure-g">
+            <div className="pure-u-1-1">
+              <h1>🦊</h1>
+              <p><strong>We can't find any Ethereum accounts!</strong> Please check and make sure Metamask or your browser are pointed at the correct network and your account is unlocked.</p>
+            </div>
+          </div>
+        </main>
+      )
+    }
     if (this.props.drizzleStatus.initialized)
     {
-      // Load the dapp.
       return Children.only(this.props.children)
     }
-
+    if (this.props.loadingComp) {
+      return this.props.loadingComp
+    }
     return(
-      // Display a loading indicator.
-      <main>
-        <h1>⚙️</h1>
-        <p>Loading dapp...</p>
+      <main className="container loading-screen">
+        <div className="pure-g">
+          <div className="pure-u-1-1">
+            <h1>⚙️</h1>
+            <p>Loading dapp...</p>
+          </div>
+        </div>
       </main>
     )
   }
 }
-
-export default Loading
+LoadingContainer.contextTypes = {
+  drizzle: PropTypes.object
+}
+/*
+ * Export connected component.
+ */
+const mapStateToProps = state => {
+  return {
+    accounts: state.accounts,
+    drizzleStatus: state.drizzleStatus,
+    web3: state.web3
+  }
+}
+export default drizzleConnect(LoadingContainer, mapStateToProps)

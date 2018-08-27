@@ -119,7 +119,7 @@ a.logo {
     display: block;
     margin-bottom: 20px;
     line-height: 1.42857143;
-    background-color: #FFF;
+    background-color: #d3d3d3;
 }
 
 .__pofland__thumbnail > img {
@@ -167,4 +167,14 @@ a.logo {
 
 .__pofland__emphasis {
     font-style: oblique;
+}
+
+.__pofland__account {
+    line-height:10px;
+    text-align: right;
+    margin: 15px 0 0 0!important;
+}
+
+.__pofland__form {
+    color: #000;
 }

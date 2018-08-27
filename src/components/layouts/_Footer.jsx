@@ -3,8 +3,10 @@ import React from 'react'
 class _Footer extends React.Component {
     render() {
         return (
-            <footer className="container-fluid text-center">
-                <p>Copyright © 2018 Paula.Land</p>
+            <footer className="site-footer">
+                <div className="text-center">
+                    <p>© Copyright <strong>Paula.Land</strong>. All Rights Reserved</p>
+                </div>
             </footer>
         )
     }
