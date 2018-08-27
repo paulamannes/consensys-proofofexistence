@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import IpfsStorageContractForm from './IpfsStorageContractForm'
+import IpfsRetrieveContractForm from './IpfsRetrieveContractForm'
 
 class Home extends Component {
 
@@ -18,7 +19,7 @@ class Home extends Component {
             <p className="__pofland__emphasis">*Please, don't store any sensitive data as your files are not encrypted and can be viewed by anyone with the hash. (;</p>
 
             <IpfsStorageContractForm account={this.props.accounts[0]} />
-
+            <IpfsRetrieveContractForm account={this.props.accounts[0]} />
             <br/><br/>
           </div> 
         </div>

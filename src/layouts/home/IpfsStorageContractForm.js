@@ -2,6 +2,7 @@ import { drizzleConnect } from 'drizzle-react'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 const IPFS = require('ipfs-api');
+//import IPFS from 'ipfs-api';
 const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
 
 class IpfsStorageContractForm extends Component {
@@ -9,6 +10,7 @@ class IpfsStorageContractForm extends Component {
     super(props);
 
     this.handleFileChange = this.handleFileChange.bind(this)
+    this.handleTagsChange = this.handleTagsChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleIpfsResult = this.handleIpfsResult.bind(this)
     this.callContractMethod = this.callContractMethod.bind(this)
@@ -16,18 +18,22 @@ class IpfsStorageContractForm extends Component {
     this.contracts = context.drizzle.contracts;
 
     this.state = {
+      fileName:'',
+      ipfsHash:'',
+      tags:'',
       message:'',
       file:'',     
       buffer:'',
-      ipfsHash:'',
       transactionHash:'',
       txReceipt: '',
       block:'',
       blockTimestamp:''
     }
   }
+  
   handleFileChange(e) {
     this.setState({file:e.target.files[0]})
+    this.setState({fileName:e.target.files[0].name})
 
     event.stopPropagation()
     event.preventDefault()
@@ -35,11 +41,15 @@ class IpfsStorageContractForm extends Component {
     let reader = new window.FileReader()
     reader.readAsArrayBuffer(file)
     reader.onloadend = () => this.getBuffer(reader)
-  }
+  }  
 
   getBuffer = async(reader) => {
     const buffer = await Buffer.from(reader.result);    
     this.setState({buffer})
+  }
+  
+  handleTagsChange(e) {
+    this.setState({tags:e.target.value})
   }
 
   handleFormSubmit(e) {
@@ -60,25 +70,30 @@ class IpfsStorageContractForm extends Component {
 
   callContractMethod(){
     console.log('hey, I have the Ipfs Hash! Sending to the smart contract from: ' + this.props.account );
-
-    this.contracts["IpfsStorage"].methods.sendHash(this.state.ipfsHash).send({from: this.account },
+    debugger;
+    //this.contracts["IpfsStorage"].methods.sendHash(this.state.ipfsHash).send({from: this.account },
+    this.contracts["IpfsStorage"].methods.insertFile(
+      this.state.fileName,
+      this.state.ipfsHash,
+      this.state.tags
+    ).send({from: this.account },
       (error, transactionHash) => {
         this.setState({ message: "Record saved on the smart contract. Tx hash: " + transactionHash});
         console.log("Sent! This is the transaction hash: " + transactionHash);
         this.setState({transactionHash});
         
-        this.context.drizzle.web3.eth.getTransactionReceipt(this.state.transactionHash, (err, txReceipt)=>{
-          console.log("Getting the Transaction Receipt: " + txReceipt);
-          console.log(err,txReceipt);
-          this.setState({txReceipt});
+        // this.context.drizzle.web3.eth.getTransactionReceipt(this.state.transactionHash, (err, txReceipt)=>{
+        //   console.log("Getting the Transaction Receipt: " + txReceipt);
+        //   console.log(err,txReceipt);
+        //   this.setState({txReceipt});
                   
-          this.context.drizzle.web3.eth.getBlock(txReceipt.blockNumber, (err, block)=> {
-            console.log("Getting the Block Number: " + block);
-            console.log(err,block);    
-            this.setState({block});      
-            this.setState({blockTimestamp: this.state.block.timestamp});
-          })
-        });
+        //   this.context.drizzle.web3.eth.getBlock(txReceipt.blockNumber, (err, block)=> {
+        //     console.log("Getting the Block Number: " + block);
+        //     console.log(err,block);    
+        //     this.setState({block});      
+        //     this.setState({blockTimestamp: this.state.block.timestamp});
+        //   })
+        // });
       }); 
   }
 
@@ -92,7 +107,7 @@ class IpfsStorageContractForm extends Component {
                 <label className="control-label col-md-2">Select File</label>
                 <div className="controls col-md-6">
                   <div className="fileupload fileupload-new" data-provides="fileupload">
-                    <input type="file" className="btn btn-file" onChange={this.handleFileChange}/>
+                    <input type="file" className="btn btn-file" onChange={this.handleFileChange} />
                   </div>
                 </div>
               </div>
@@ -103,7 +118,7 @@ class IpfsStorageContractForm extends Component {
                 <div className="form-group">
                   <label className="col-sm-2 col-sm-2 control-label">Tags</label>
                   <div className="col-md-6">
-                    <input type="text" className="form-control round-form"/>
+                    <input type="text" className="form-control round-form" onChange={this.handleTagsChange} />
                   </div>
                   <div className="col-md-3"> 
                     <button type="submit" className="btn btn-theme">Send File</button>
