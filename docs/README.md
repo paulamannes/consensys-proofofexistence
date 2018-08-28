@@ -4,6 +4,9 @@ Final Project for the ConsenSys Academy 2018 Developer Program
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+* You can play around with the Rinkeby deployed version.
+* Documentation: refer to [Avoiding Common Attacks](https://github.com/paulamannes/consensys-proofofexistence/blob/master/docs/avoiding_comon_attacks.md) and [Design Pattern Decisions](https://github.com/paulamannes/consensys-proofofexistence/blob/master/docs/design_pattern_decisions.md)
+
 
 ### Prerequisites
 
@@ -55,6 +58,7 @@ You need the Metamask extension for this step.
     c) paste in metamask, save a new dummy password
 4) Refresh the page
 
+
 ## Running truffle tests
 
 For this step to work you need to have done the previous steps in the correct orther. Run:
@@ -64,7 +68,7 @@ truffle test
 
 ## Rinkeby deploy
 
-* Contract Address: 0x101f87dd51440c52d82ed0f279b1b53c97aa5b64
+* Contract Address: [0x101f87dd51440c52d82ed0f279b1b53c97aa5b64](https://rinkeby.etherscan.io/address/0x101f87dd51440c52d82ed0f279b1b53c97aa5b64)
 * Ehterscan transaction: https://rinkeby.etherscan.io/tx/0x32ee43a14832cafd34f945fe5117c86d91de29434f96e16b96d0816be6d2483f
 
 
@@ -80,15 +84,18 @@ truffle test
   * [Ownable contract standard](https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/ownership/Ownable.sol)
   * [Pausable contract standard](https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/lifecycle/Pausable.sol)
 
-## Author
-
-* **Paula Mannes** - *Final Project in the ConsenSys Academy 2018 Developer Program* - [Github](https://github.com/paulamannes)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+
 ## Acknowledgments
 
 * Front-end template: [Dashgum](https://www.bootstrapdash.com/free-flat-minimalist-admin-templates/#Dashgum)
 * Open Zeppelin test helper: [Assert Revert](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/test/helpers/assertRevert.js)
+
+
+## Author
+
+* **Paula Mannes** - *Final Project in the ConsenSys Academy 2018 Developer Program* - [Github](https://github.com/paulamannes)

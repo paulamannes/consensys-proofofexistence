@@ -1,7 +1,7 @@
 # Design Pattern Decisions
 
-    When it comes to design patterns, it was decided to have the fewer data on the blockchain as possible to not have sensitive information being registeres publicly, encryption can be incorporated but also can increase the complexity.
-    In this version of the application, the user can upload files to IPFS and visualize all of them of the details of one (picture) with its timestamp.
+When it comes to design patterns, it was decided to have the fewer data on the blockchain as possible to not have sensitive information being registeres publicly, encryption can be incorporated but also can increase the complexity.
+In this version of the application, the user can upload files to IPFS and visualize all of them of the details of one (picture) with its timestamp.
 
 ## Circuit Breaker Pattern
 
@@ -19,7 +19,7 @@
 
 ## Avoid exceeding gas limit
 
-    The use of mapping was intentional to facilitate the access to data without having to run a loop and consume more gas than needed. Its a way to avoid infinite loops due to an unknown size of the data array.
+The use of mapping was intentional to facilitate the access to data without having to run a loop and consume more gas than needed. Its a way to avoid infinite loops due to an unknown size of the data array.
 
 ```
   mapping (address => uint[]) private addressToFiles;

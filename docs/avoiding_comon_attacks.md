@@ -5,7 +5,7 @@ The fact that the contract does not involves transfering minimizes the risk of m
 Most of the decisions about attacks below have one or more unit test for it.
 
 
-## Posion Data
+## Poison Data
 
 The contract validates all the string inputs to restrict to the following maximum length size:
 
