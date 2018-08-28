@@ -2,6 +2,7 @@
   "name": "consensys-proofofexistence",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://paulamannes.github.io/consensys-proofofexistence",
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
@@ -58,6 +59,7 @@
     "env2": "^2.2.2",
     "eth-block-tracker-es5": "^2.3.2",
     "firebase": "^5.3.0",
+    "gh-pages": "^1.2.0",
     "ipfs-api": "^24.0.1",
     "moment": "^2.22.2",
     "qrcode.react": "^0.8.0",
@@ -74,7 +76,7 @@
     "redux-thunk": "^2.3.0",
     "web3": "1.0.0-beta.34"
   },
-  "scripts": {
+  "scripts": {  
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
