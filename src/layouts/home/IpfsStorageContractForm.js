@@ -2,7 +2,6 @@ import { drizzleConnect } from 'drizzle-react'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 const IPFS = require('ipfs-api');
-//import IPFS from 'ipfs-api';
 const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
 
 class IpfsStorageContractForm extends Component {
@@ -27,7 +26,8 @@ class IpfsStorageContractForm extends Component {
       transactionHash:'',
       txReceipt: '',
       block:'',
-      blockTimestamp:''
+      blockTimestamp:'',
+      etherscanLink:''
     }
   }
   
@@ -70,30 +70,18 @@ class IpfsStorageContractForm extends Component {
 
   callContractMethod(){
     console.log('hey, I have the Ipfs Hash! Sending to the smart contract from: ' + this.props.account );
-    debugger;
-    //this.contracts["IpfsStorage"].methods.sendHash(this.state.ipfsHash).send({from: this.account },
+    
     this.contracts["IpfsStorage"].methods.insertFile(
       this.state.fileName,
       this.state.ipfsHash,
       this.state.tags
     ).send({from: this.account },
       (error, transactionHash) => {
-        this.setState({ message: "Record saved on the smart contract. Tx hash: " + transactionHash});
-        console.log("Sent! This is the transaction hash: " + transactionHash);
         this.setState({transactionHash});
+        this.setState({ message: "Record saved on the smart contract. Tx hash: "});
+        this.setState({ etherscanLink:'https://rinkeby.etherscan.io/tx/' + transactionHash});
+        console.log("Sent! This is the transaction hash: " + this.state.etherscanLink);
         
-        // this.context.drizzle.web3.eth.getTransactionReceipt(this.state.transactionHash, (err, txReceipt)=>{
-        //   console.log("Getting the Transaction Receipt: " + txReceipt);
-        //   console.log(err,txReceipt);
-        //   this.setState({txReceipt});
-                  
-        //   this.context.drizzle.web3.eth.getBlock(txReceipt.blockNumber, (err, block)=> {
-        //     console.log("Getting the Block Number: " + block);
-        //     console.log(err,block);    
-        //     this.setState({block});      
-        //     this.setState({blockTimestamp: this.state.block.timestamp});
-        //   })
-        // });
       }); 
   }
 
@@ -128,7 +116,12 @@ class IpfsStorageContractForm extends Component {
           </div>
           <div className="row mt">  
             <div className="col-md-12">  
-              <p><strong>{this.state.message}</strong></p>  
+              <p>
+                <strong>
+                  {this.state.message}
+                  <a href={this.state.etherscanLink} target="_blank">{this.state.etherscanLink}</a>
+                </strong>
+              </p> 
             </div>
           </div>  
         </form>         

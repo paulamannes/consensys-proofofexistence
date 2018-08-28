@@ -61,8 +61,8 @@ class IpfsRetrieveContractForm extends Component {
                         <td>{item.index}</td>
                         <td>{item.fileName}</td>
                         <td>{item.tags}</td>
-                        <td><a href={`https://gateway.ipfs.io/ipfs/${item.ipfsHash}`} target="_blanck">{ item.ipfsHash }</a></td>
-                        <td>{item.timestamp}</td>
+                        <td><a href={`https://gateway.ipfs.io/ipfs/${item.ipfsHash}`} target="_blank">{ item.ipfsHash }</a></td>
+                        <td><a href={`/file/${item.index}/${item.ipfsHash}`}>{item.timestamp}</a></td>
                       </tr>
                       )
                   })}
@@ -70,7 +70,7 @@ class IpfsRetrieveContractForm extends Component {
               </table>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     )
   }

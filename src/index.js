@@ -22,6 +22,7 @@ ReactDOM.render((
       <BrowserRouter>
         <Switch>
             <LayoutRoute exact layout={Layout.Default} path="/" component={ GeneralPages.Home } />
+            <LayoutRoute exact layout={Layout.Default} path="/file/:id/:hash" component={ GeneralPages.File } />
 
             <LayoutRoute layout={Layout.Default} component={GeneralPages.NotFound} />
         </Switch>

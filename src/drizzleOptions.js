@@ -12,6 +12,7 @@ const drizzleOptions = {
     IpfsStorage
   ],
   events: {
+    IpfsStorage: ['LogNewFile'],
   },
   polls: {
     accounts: 1500
