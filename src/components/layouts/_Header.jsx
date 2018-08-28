@@ -9,7 +9,7 @@ class _Header extends React.Component {
                     <img src="/assets/images/logo.png" className="img-circle" width="30" alt="logo"/>
                 </span>
 
-                <a className="logo">
+                <a className="logo" href="/">
                     Proof of Existence Dapp
                 </a>
 

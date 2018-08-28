@@ -29,7 +29,7 @@ class File extends Component {
       
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <img src={`https://gateway.ipfs.io/ipfs/${ this.props.match.params.hash }`}/>
+            <img src={`https://gateway.ipfs.io/ipfs/${ this.props.match.params.hash }`} width="800px" role="presentation"/>
           </div> 
         </div>
       </main>

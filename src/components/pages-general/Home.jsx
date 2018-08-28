@@ -10,7 +10,7 @@ class Home extends React.Component {
                         <div className="row">
                             <div className="col-sm-12">
                                 <h1 className="__pofland__home_title text-center">
-                                    Save files on IPFS and prove they really exist with Ethereum
+                                    DApp to upload time-stamped pictures on IPFS powered by Ethereum
                                 </h1>
                             </div>
                         </div>
