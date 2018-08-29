@@ -1,6 +1,13 @@
 # ConsenSys Proof of Existence DApp
 Final Project for the ConsenSys Academy 2018 Developer Program
 
+Go to: [https://paulamannes.github.io/consensys-proofofexistence/](https://paulamannes.github.io/consensys-proofofexistence/)
+
+1) Connect to Metamask
+2) Switch to Rinkeby Test Network
+3) Make sure you have funds, if not request here:[https://faucet.rinkeby.io/](https://faucet.rinkeby.io/)
+4) You are ready to test the dapp! (:
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
