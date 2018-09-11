@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
-import 'installed_contracts/zeppelin/contracts/ownership/Ownable.sol';
-import 'installed_contracts/zeppelin/contracts/lifecycle/Pausable.sol';
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
+import 'openzeppelin-solidity/contracts/lifecycle/Pausable.sol';
 
 /** 
 * @title Ipfs File Storage 
